@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+  db:
+    platform: linux/amd64
+    image: mysql
+    restart: always
+    container_name: "test_db"
+    ports:
+      - 3306:3306
+    volumes:
+      - db_vol:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=085283480788
+      - MYSQL_DATABASE=todo-app
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - default
+  app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    volumes:
+      - app_vol:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+#    env_file:
+#      - .env
+    container_name: test_api
+    restart: on-failure
+    networks:
+      - default
+
+volumes:
+  db_vol:
+  app_vol:
+networks:
+  default:

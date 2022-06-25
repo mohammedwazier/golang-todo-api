@@ -3,6 +3,7 @@ package dto
 import "time"
 
 type Todo struct {
+	ID    uint   `json:"id"`
 	Name  string `json:"name"`
 	Check int    `json:"check"`
 }

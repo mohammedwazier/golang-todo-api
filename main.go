@@ -42,5 +42,7 @@ func main() {
 		})
 	})
 
+	//PORT := fmt.Sprintf(":%s", os.Getenv("SERVER_PORT"))
+	//fmt.Println("Server running on PORT:", os.Getenv("SERVER_PORT"))
 	log.Fatal(app.Listen(":3000"))
 }
